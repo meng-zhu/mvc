@@ -1,0 +1,12 @@
+[21-Jul-2016 06:24:46 UTC] PHP Warning:  mysql_fetch_assoc() expects parameter 1 to be resource, null given in /home/ubuntu/workspace/testMVC/views/Home/index.php on line 123
+[21-Jul-2016 06:24:46 UTC] PHP Stack trace:
+[21-Jul-2016 06:24:46 UTC] PHP   1. {main}() /home/ubuntu/workspace/testMVC/views/Home/index.php:0
+[21-Jul-2016 06:24:46 UTC] PHP   2. mysql_fetch_assoc() /home/ubuntu/workspace/testMVC/views/Home/index.php:123
+[21-Jul-2016 06:32:47 UTC] PHP Warning:  mysql_fetch_assoc() expects parameter 1 to be resource, null given in /home/ubuntu/workspace/testMVC/views/Home/index.php on line 123
+[21-Jul-2016 06:32:47 UTC] PHP Stack trace:
+[21-Jul-2016 06:32:47 UTC] PHP   1. {main}() /home/ubuntu/workspace/testMVC/views/Home/index.php:0
+[21-Jul-2016 06:32:47 UTC] PHP   2. mysql_fetch_assoc() /home/ubuntu/workspace/testMVC/views/Home/index.php:123
+[21-Jul-2016 06:34:02 UTC] PHP Warning:  mysql_fetch_assoc() expects parameter 1 to be resource, null given in /home/ubuntu/workspace/testMVC/views/Home/index.php on line 123
+[21-Jul-2016 06:34:02 UTC] PHP Stack trace:
+[21-Jul-2016 06:34:02 UTC] PHP   1. {main}() /home/ubuntu/workspace/testMVC/views/Home/index.php:0
+[21-Jul-2016 06:34:02 UTC] PHP   2. mysql_fetch_assoc() /home/ubuntu/workspace/testMVC/views/Home/index.php:123
