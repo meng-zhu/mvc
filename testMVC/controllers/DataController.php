@@ -11,9 +11,7 @@ class DataController extends Controller {
     function cityChange_Gov() {
         
         $city = $_GET["city"];
-       
-        // $type = "1";
-        // $city = "高雄市";
+      
         if($city == "請選擇縣市"){
             $city="%";
         }
@@ -39,38 +37,36 @@ class DataController extends Controller {
         $type = $_GET["type"];
         $city = $_GET["city"];
        
-        // $type = "1";
-        // $city = "高雄市";
         if($city == "請選擇縣市"){
-            $city="%";
+           $city="%";
         }
       
         /* 指定丟給哪個 models */
         $result = $this->model("crud");
         $db = $this->db();
-        // /* 要執行哪個 function 並且給值 */
+        /* 要執行哪個 function 並且給值 */
         $row = $result->cityChange_pet($db,$city,$type);
        
         echo "<ul data-role='listview' data-filter='true'><table width='80%'>";
         
-         foreach ($row as $key){
-             if ($type =="1"){
-            echo "<tr>
+        foreach ($row as $key){
+            if ($type =="1"){
+                echo "<tr>
                 <td align='center'>
-                    <img src='/testMVC/views/Home/images/".$key['images']."' width='250' height='250'> 
+                <img src='/testMVC/views/Home/images/".$key['images']."' width='250' height='250'> 
                 </td>
                 <td>
-                    <h6>晶片編號： " . $key['num'] . "<br><br>品種： " . $key['variety']	. "<br><br>性別： " . $key['sex'] . "  體重： " . $key['weight'] . "  年齡： " . $key['age']	. "  顏色： " . $key['color'] . "<br><br>其他特徵： " . $key['orther'] .  "<br><br>走失日期： " . $key['missingDate'] . "<br><br>走失地點： " . $key['missingPlace'] . "<br><br>聯絡人： " . $key['name'] . "<br><br>聯絡電話： " . $key['phone'] . "<br><br>Email： " . $key['email'] . "<br><br>發佈日期： " . $key['poDate']."</h6><hr></td> </tr>";
-         }else{
-             echo "<tr>
+                     <h6>晶片編號： " . $key['num'] . "<br><br>品種： " . $key['variety']	. "<br><br>性別： " . $key['sex'] . "  體重： " . $key['weight'] . "  年齡： " . $key['age']	. "  顏色： " . $key['color'] . "<br><br>其他特徵： " . $key['orther'] .  "<br><br>走失日期： " . $key['missingDate'] . "<br><br>走失地點： " . $key['missingPlace'] . "<br><br>聯絡人： " . $key['name'] . "<br><br>聯絡電話： " . $key['phone'] . "<br><br>Email： " . $key['email'] . "<br><br>發佈日期： " . $key['poDate']."</h6><hr></td> </tr>";
+            }else{
+                echo "<tr>
                 <td align='center'>
-                    <img src='/testMVC/views/Home/images/".$key['images']."' width='250' height='250'> 
+                     <img src='/testMVC/views/Home/images/".$key['images']."' width='250' height='250'> 
                 </td>
                 <td>
-                    <h6>晶片編號： " . $key['num'] . "<br><br>品種： " . $key['variety']	. "<br><br>性別： " . $key['sex'] . "  體重： " . $key['weight'] . "  年齡： " . $key['age']	. "  顏色： " . $key['color'] . "<br><br>其他特徵： " . $key['orther'] .  "<br><br>拾獲日期： " . $key['missingDate'] . "<br><br>拾獲地點： " . $key['missingPlace'] . "<br><br>聯絡人： " . $key['name'] . "<br><br>聯絡電話： " . $key['phone'] . "<br><br>Email： " . $key['email'] . "<br><br>發佈日期： " . $key['poDate']."</h6><hr></td> </tr>";
+                     <h6>晶片編號： " . $key['num'] . "<br><br>品種： " . $key['variety']	. "<br><br>性別： " . $key['sex'] . "  體重： " . $key['weight'] . "  年齡： " . $key['age']	. "  顏色： " . $key['color'] . "<br><br>其他特徵： " . $key['orther'] .  "<br><br>拾獲日期： " . $key['missingDate'] . "<br><br>拾獲地點： " . $key['missingPlace'] . "<br><br>聯絡人： " . $key['name'] . "<br><br>聯絡電話： " . $key['phone'] . "<br><br>Email： " . $key['email'] . "<br><br>發佈日期： " . $key['poDate']."</h6><hr></td> </tr>";
          
-         }
-         }
+          }
+        }
        echo "</table></ul>";
        
     }
@@ -166,7 +162,7 @@ class DataController extends Controller {
         $row = $result->showPet($db,$pId);
     	$this->view("Home/pdu",$row,$row2);
     }
-    /*----------------------------------編輯協尋資料--------------------------------------*/
+    /*----------------------------------編輯協尋資料-----------------------------------------*/
     function updatePet() {
         $pId = $_GET["id"];
         $num = $_POST["num"];
@@ -180,8 +176,7 @@ class DataController extends Controller {
         $city = $_POST["city"];
         $place = $_POST["place"];
         $date = $_POST["date"];
-        // echo $pId."<br>";
-        // echo $date;
+   
         $images = $_FILES["file"]["name"];
     
         /* 指定丟給哪個 models */

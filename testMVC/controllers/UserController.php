@@ -8,11 +8,12 @@ class UserController extends Controller {
         
         return $config->getDB();
    }
-   /*-----------------------------------登入--------------------------------------*/
+    /*-----------------------------------登入--------------------------------------*/
     function login() {
-        $email=$_POST["email"];
-        $password=$_POST["password"];
-        
+        /*  防範隱碼攻擊 */
+        $email=addslashes($_POST["email"]);
+        $password=addslashes($_POST["password"]);
+       
         /* 指定丟給哪個 models */
         $result = $this->model("crud");
         $db = $this->db();
@@ -28,7 +29,7 @@ class UserController extends Controller {
     	header("Location:../Home");
       
     }
-   /*-----------------------------------註冊--------------------------------------*/
+    /*-----------------------------------註冊--------------------------------------*/
     function signup() {
         $email=$_GET["email"];
         $password=$_GET["password"];
@@ -46,7 +47,7 @@ class UserController extends Controller {
         $row = $result->check_account($db,$email,$password,$name,$phone);
         echo $row;
     }
-     /*--------------------------改會員資料--------------------------------------*/
+    /*--------------------------改會員資料--------------------------------------*/
     function updateUser() {
         $uId = $_SESSION['uId'];
         $password=$_POST["password"];
