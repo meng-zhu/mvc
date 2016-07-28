@@ -10,7 +10,7 @@
 
 <head>
      
-    <script type="text/javascript" src="views/Home/jquery.js"></script>
+    <script type="text/javascript" src="/testMVC/views/Home/jquery.js"></script>
     <script type="text/javascript">
        
         
@@ -51,22 +51,22 @@
     <title>寵物協尋平台</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="views/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/testMVC/views/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="views/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="/testMVC/views/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
     <!-- Timeline CSS -->
-    <link href="views/dist/css/timeline.css" rel="stylesheet">
+    <link href="/testMVC/views/dist/css/timeline.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="views/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/testMVC/views/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="views/bower_components/morrisjs/morris.css" rel="stylesheet">
+    <link href="/testMVC/views/bower_components/morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="views/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/testMVC/views/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -179,21 +179,21 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="views/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/testMVC/views/bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="views/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/testMVC/views/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="views/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="/testMVC/views/bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="views/bower_components/raphael/raphael-min.js"></script>
-    <script src="views/bower_components/morrisjs/morris.min.js"></script>
-    <script src="views/js/morris-data.js"></script>
+    <script src="/testMVC/views/bower_components/raphael/raphael-min.js"></script>
+    <script src="/testMVC/views/bower_components/morrisjs/morris.min.js"></script>
+    <script src="/testMVC/views/js/morris-data.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="views/dist/js/sb-admin-2.js"></script>
+    <script src="/testMVC/views/dist/js/sb-admin-2.js"></script>
 
 </body>
 

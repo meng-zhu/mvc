@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 class DataController extends Controller {
    function db(){
@@ -23,7 +22,7 @@ class DataController extends Controller {
         $row = $result->cityChange_gov($db,$city);
     
        
-        echo "<TABLE BORDER='1'  WIDTH='100%'><TR align='center'><TD>收容所名稱</TD><TD>地址</TD><TD>聯絡電話</TD><TD>服務時間</TD>";
+         echo "<TABLE BORDER='1'  WIDTH='100%'><TR align='center'><TD>收容所名稱</TD><TD>地址</TD><TD>聯絡電話</TD><TD>服務時間</TD>";
         
          foreach ($row as $key){
            echo "<TR align='center'><TD>".$key['gName']."</TD><TD>".$key['gPlace']."</TD><TD> ".$key['gPhone']."</TD><TD>".$key['gService']."</TD></TR>";
@@ -75,7 +74,7 @@ class DataController extends Controller {
     function searchKeyword() {
         
         $type = $_GET["type"];
-        $keyword = $_GET["keyword"];
+        $keyword = addslashes($_GET["keyword"]);
        
       
         /* 指定丟給哪個 models */
@@ -137,8 +136,10 @@ class DataController extends Controller {
         $db = $this->db();
         /* 要執行哪個 function 並且給值 */
         $row = $result->createPet($db,$num,$sex,$variety,$weight,$age,$color,$orther,$images,$type,$city,$place,$date,$uId);
-     
-    	header("Location:".$row);
+        if($row == "上傳成功"){
+            header("Location:../Home");
+        }
+    	
 
     } 
     /*----------------------------------刪除協尋資料--------------------------------------*/
@@ -149,7 +150,9 @@ class DataController extends Controller {
         $db = $this->db();
         // /* 要執行哪個 function 並且給值 */
         $row = $result->delect_pet_img($db,$pId);
-    	header("Location:".$row);
+    	if($row == "協尋資料已刪除"){
+            header("Location:../Home/pdm");
+        }
     }
     /*----------------------------------顯示單筆協尋資料--------------------------------------*/
     function showPet() {
@@ -188,7 +191,10 @@ class DataController extends Controller {
         }else{
             $row = $result->updatePet($db,$num,$sex,$variety,$weight,$age,$color,$orther,$type,$city,$place,$date,$pId);
         }
-       	header("Location:".$row);
+        if($row == "修改成功"){
+            header("Location:../Home/pdm");
+        }
+       	
     }
 }
   

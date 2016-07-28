@@ -31,16 +31,13 @@ class crud
          //如果筆數<1 表示帳密錯誤
          if ( $result->rowCount() < 1) {
            $db = null;
-          // return "帳號或密碼輸入錯誤";
-            return "../Home/login";
+            return "帳號或密碼輸入錯誤";
          }else{
             $row = $result->fetch();
-            //$row = mysql_fetch_assoc($result);
             $uId =  $row['uId'];  
-            //return $uId;
             $_SESSION['uId'] = $uId;
-          // return "成功登入";
-            return "../Home";
+            return "成功登入";
+           
          }
       
      }
@@ -56,13 +53,15 @@ class crud
      public function updateUser_pwd($db,$password,$name,$phone,$uId)
      {
           $result = $db->query("UPDATE `user` SET `password`='$password',`name`='$name',`phone`='$phone' WHERE `uId` ='$uId'");
-          return "../Home";
+          return "資料已修改";
+        //   return "../Home";
      } 
      /*--------------修改個人資料(沒變更密碼)----------------*/
      public function updateUser($db,$name,$phone,$uId)
      {
           $result = $db->query("UPDATE `user` SET `name`='$name',`phone`='$phone' WHERE `uId` ='$uId'");
-          return "../Home";
+          return "資料已修改";
+        //   return "../Home";
      }
      
      /*--------------------------------------協尋相關----------------------------------------------*/
@@ -88,7 +87,7 @@ class crud
      /*----------依關鍵字尋找-----------*/
      public function keyword_pet($db,$keyword,$type)
      {
-          $result = $db->query("SELECT * FROM `pet` , `user`   where pet.uId=user.uId and type = '$type' and (`num` like '%$keyword%' or `sex` like '%$keyword%' or `variety` like  '%$keyword%'  or `weight` like  '%$keyword%' or `age` like  '%$keyword%' or `color` like  '%$keyword%' or `orther` like  '%$keyword%' or `city` like  '%$keyword%' or `missingPlace` like  '%$keyword%' or `missingDate` like  binary '%$keyword%')  order by pet.poDate desc");
+          $result = $db->query("SELECT * FROM `pet` , `user`   where pet.uId=user.uId and type = '$type' and (`num` like '%$keyword%' or `sex` like '$keyword' or `variety` like  '%$keyword%'  or `weight` like  '$keyword' or `age` like  '$keyword' or `color` like  '%$keyword%' or `orther` like  '%$keyword%' or `city` like  '%$keyword%' or `missingPlace` like  '%$keyword%' or `missingDate` like  binary '%$keyword%')  order by pet.poDate desc");
            $row=$result->fetchAll(PDO::FETCH_ASSOC);
           return $row;
      }
@@ -103,7 +102,8 @@ class crud
      public function createPet($db,$num,$sex,$variety,$weight,$age,$color,$orther,$images,$type,$city,$place,$date,$uId)
      {
          $result = $db->query("INSERT INTO `pet`(`num`, `sex`, `variety`, `weight`, `age`, `color`, `orther`, `images`, `type`, `city`, `missingPlace`, `missingDate`, `poDate`, `uId`) VALUES ('$num','$sex','$variety','$weight','$age','$color','$orther','$images','$type','$city','$place','$date',current_date(),'$uId')");
-         return "../Home";
+         return "上傳成功";
+        //  return "../Home";
      }
      /*----------登入過協尋資料查詢(全部)-----------*/
       public function showPet_all($db,$uId)
@@ -123,13 +123,15 @@ class crud
       public function updatePet_img($db,$num,$sex,$variety,$weight,$age,$color,$orther,$images,$type,$city,$place,$date,$pId)
      {
          $result = $db->query("UPDATE `pet` SET `num`='$num',`sex`='$sex',`variety`='$variety',`weight`='$weight',`age`='$age',`color`='$color',`orther`='$orther',`images`='$images',`type`='$type',`city`='$city',`missingPlace`='$place',`missingDate`='$date'WHERE `pId`='$pId'");
-         return "../Home/pdm";
+         return "修改成功";        
+        //  return "../Home/pdm";
      }
      /*----------編輯協尋資料(沒照片)-----------*/
      public function updatePet($db,$num,$sex,$variety,$weight,$age,$color,$orther,$type,$city,$place,$date,$pId)
      {
          $result = $db->query("UPDATE `pet` SET `num`='$num',`sex`='$sex',`variety`='$variety',`weight`='$weight',`age`='$age',`color`='$color',`orther`='$orther',`type`='$type',`city`='$city',`missingPlace`='$place',`missingDate`='$date'WHERE `pId`='$pId'");
-         return "../Home/pdm";
+         return "修改成功"; 
+        //  return "../Home/pdm";
      }
      /*----------刪除協尋資料-----------*/
       public function delect_pet_img($db,$pId)
@@ -143,7 +145,8 @@ class crud
 	        unlink("views/Home/images/$images");//將檔案刪除
     	}
     	$this->delect_pet($db,$pId);
-    	return "../Home/pdm";
+    	return "協尋資料已刪除除";
+    // 	return "../Home/pdm";
      }
      public function delect_pet($db,$pId)
      {

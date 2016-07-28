@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 class UserController extends Controller {
    function db(){
@@ -19,7 +18,12 @@ class UserController extends Controller {
         $db = $this->db();
         /* 要執行哪個 function 並且給值 */
         $row = $result->login($db,$email,$password);
-        header("Location:".$row);
+        if($row == "帳號或密碼輸入錯誤"){
+            header("Location:../Home/login");
+        }else{
+            header("Location:../Home");
+        }
+       
       
     }
     /*-----------------------------------登出--------------------------------------*/
@@ -67,7 +71,10 @@ class UserController extends Controller {
            $row = $result->updateUser($db,$name,$phone,$uId);
         
         }
-        header("Location:".$row);
+        if($row == "資料已修改"){
+            header("Location:../Home");
+        }
+        
     }
 }
     

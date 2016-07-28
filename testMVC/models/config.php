@@ -8,10 +8,11 @@ class config
         $dbPw = "";
         
         // 連接資料庫伺服器
+        
         $db = new PDO($dbConnect, $dbUser, $dbPw);
         $db->exec("set names utf8");
-        
         return $db;
+        
   
  }
 }
