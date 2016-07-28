@@ -20,15 +20,9 @@ class DataController extends Controller {
         $db = $this->db();
         // /* 要執行哪個 function 並且給值 */
         $row = $result->cityChange_gov($db,$city);
-    
-       
-         echo "<TABLE BORDER='1'  WIDTH='100%'><TR align='center'><TD>收容所名稱</TD><TD>地址</TD><TD>聯絡電話</TD><TD>服務時間</TD>";
         
-         foreach ($row as $key){
-           echo "<TR align='center'><TD>".$key['gName']."</TD><TD>".$key['gPlace']."</TD><TD> ".$key['gPhone']."</TD><TD>".$key['gService']."</TD></TR>";
-         }
-       echo "</table>";
-       
+        $this->view("Home/drawTable_gov",$row);//丟給view : drawTable_gov.php畫表格
+    
     }
    /*-----------------------------------縣市_寵物--------------------------------------*/
     function cityChange() {
@@ -45,28 +39,7 @@ class DataController extends Controller {
         $db = $this->db();
         /* 要執行哪個 function 並且給值 */
         $row = $result->cityChange_pet($db,$city,$type);
-       
-        echo "<ul data-role='listview' data-filter='true'><table width='80%'>";
-        
-        foreach ($row as $key){
-            if ($type =="1"){
-                echo "<tr>
-                <td align='center'>
-                <img src='/testMVC/views/Home/images/".$key['images']."' width='250' height='250'> 
-                </td>
-                <td>
-                     <h6>晶片編號： " . $key['num'] . "<br><br>品種： " . $key['variety']	. "<br><br>性別： " . $key['sex'] . "  體重： " . $key['weight'] . "  年齡： " . $key['age']	. "  顏色： " . $key['color'] . "<br><br>其他特徵： " . $key['orther'] .  "<br><br>走失日期： " . $key['missingDate'] . "<br><br>走失地點： " . $key['missingPlace'] . "<br><br>聯絡人： " . $key['name'] . "<br><br>聯絡電話： " . $key['phone'] . "<br><br>Email： " . $key['email'] . "<br><br>發佈日期： " . $key['poDate']."</h6><hr></td> </tr>";
-            }else{
-                echo "<tr>
-                <td align='center'>
-                     <img src='/testMVC/views/Home/images/".$key['images']."' width='250' height='250'> 
-                </td>
-                <td>
-                     <h6>晶片編號： " . $key['num'] . "<br><br>品種： " . $key['variety']	. "<br><br>性別： " . $key['sex'] . "  體重： " . $key['weight'] . "  年齡： " . $key['age']	. "  顏色： " . $key['color'] . "<br><br>其他特徵： " . $key['orther'] .  "<br><br>拾獲日期： " . $key['missingDate'] . "<br><br>拾獲地點： " . $key['missingPlace'] . "<br><br>聯絡人： " . $key['name'] . "<br><br>聯絡電話： " . $key['phone'] . "<br><br>Email： " . $key['email'] . "<br><br>發佈日期： " . $key['poDate']."</h6><hr></td> </tr>";
-         
-          }
-        }
-       echo "</table></ul>";
+        $this->view("Home/drawTable_pet",$row);//丟給view : drawTable_pet.php畫表格
        
     }
     
@@ -82,45 +55,24 @@ class DataController extends Controller {
         $db = $this->db();
         // /* 要執行哪個 function 並且給值 */
         $row = $result->keyword_pet($db,$keyword,$type);
-       
-        echo "<ul data-role='listview' data-filter='true'><table width='80%'>";
-        
-         foreach ($row as $key){
-             if ($type =="1"){
-            echo "<tr>
-                <td align='center'>
-                    <img src='/testMVC/views/Home/images/".$key['images']."' width='250' height='250'> 
-                </td>
-                <td>
-                    <h6>晶片編號： " . $key['num'] . "<br><br>品種： " . $key['variety']	. "<br><br>性別： " . $key['sex'] . "  體重： " . $key['weight'] . "  年齡： " . $key['age']	. "  顏色： " . $key['color'] . "<br><br>其他特徵： " . $key['orther'] .  "<br><br>走失日期： " . $key['missingDate'] . "<br><br>走失地點： " . $key['missingPlace'] . "<br><br>聯絡人： " . $key['name'] . "<br><br>聯絡電話： " . $key['phone'] . "<br><br>Email： " . $key['email'] . "<br><br>發佈日期： " . $key['poDate']."</h6><hr></td> </tr>";
-         }else{
-             echo "<tr>
-                <td align='center'>
-                    <img src='/testMVC/views/Home/images/".$key['images']."' width='250' height='250'> 
-                </td>
-                <td>
-                    <h6>晶片編號： " . $key['num'] . "<br><br>品種： " . $key['variety']	. "<br><br>性別： " . $key['sex'] . "  體重： " . $key['weight'] . "  年齡： " . $key['age']	. "  顏色： " . $key['color'] . "<br><br>其他特徵： " . $key['orther'] .  "<br><br>拾獲日期： " . $key['missingDate'] . "<br><br>拾獲地點： " . $key['missingPlace'] . "<br><br>聯絡人： " . $key['name'] . "<br><br>聯絡電話： " . $key['phone'] . "<br><br>Email： " . $key['email'] . "<br><br>發佈日期： " . $key['poDate']."</h6><hr></td> </tr>";
-         
-         }
-         }
-       echo "</table></ul>";
-       
+        $this->view("Home/drawTable_pet",$row);//丟給view : drawTable_pet.php畫表格
+  
     }
     /*-----------------------------------協尋資料登入--------------------------------------*/
     function createPet(){
         
         $uId = $_SESSION['uId'];
-        $num = $_POST["num"];
-        $variety = $_POST["variety"];
-        $sex = $_POST["sex"];
-        $weight = $_POST["weight"];
-        $age = $_POST["age"];
-        $color = $_POST["color"];
-        $orther = $_POST["orther"];
-        $type = $_POST["type"];
-        $city = $_POST["city"];
-        $place = $_POST["place"];
-        $date = $_POST["date"];
+        $num = addslashes($_POST["num"]);
+        $variety = addslashes($_POST["variety"]);
+        $sex = addslashes($_POST["sex"]);
+        $weight = addslashes($_POST["weight"]);
+        $age = addslashes($_POST["age"]);
+        $color = addslashes($_POST["color"]);
+        $orther = addslashes($_POST["orther"]);
+        $type = addslashes($_POST["type"]);
+        $city = addslashes($_POST["city"]);
+        $place = addslashes($_POST["place"]);
+        $date = addslashes($_POST["date"]);
         $images = $_FILES["file"]["name"];
         
        // echo $_SERVER['PHP_SELF'];
@@ -168,17 +120,17 @@ class DataController extends Controller {
     /*----------------------------------編輯協尋資料-----------------------------------------*/
     function updatePet() {
         $pId = $_GET["id"];
-        $num = $_POST["num"];
-        $variety = $_POST["variety"];
-        $sex = $_POST["sex"];
-        $weight = $_POST["weight"];
-        $age = $_POST["age"];
-        $color = $_POST["color"];
-        $orther = $_POST["orther"];
-        $type = $_POST["type"];
-        $city = $_POST["city"];
-        $place = $_POST["place"];
-        $date = $_POST["date"];
+        $num = addslashes($_POST["num"]);
+        $variety = addslashes($_POST["variety"]);
+        $sex = addslashes($_POST["sex"]);
+        $weight = addslashes($_POST["weight"]);
+        $age = addslashes($_POST["age"]);
+        $color = addslashes($_POST["color"]);
+        $orther = addslashes($_POST["orther"]);
+        $type = addslashes($_POST["type"]);
+        $city = addslashes($_POST["city"]);
+        $place = addslashes($_POST["place"]);
+        $date = addslashes($_POST["date"]);
    
         $images = $_FILES["file"]["name"];
     

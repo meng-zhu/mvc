@@ -11,13 +11,13 @@
            var name = $("#name").val(); 
            var phone = $("#phone").val(); 
           if(email!='' && password!='' && name!=''){
-              $.get('../User/signup?email='+email+'&password=' + password +'&name='+ name +'&phone='+ phone , signup_res)
+              $.get('../User/signup?email='+email+'&password=' + password +'&name='+ name +'&phone='+ phone,signup_res)
           }else{
               alert("資料輸入不完全");
           }
            
       }function signup_res(data) {
-         // alert(data);
+        //   alert(data);
           if(data=="此信箱已註冊過"){
                 alert(data);
           }else{

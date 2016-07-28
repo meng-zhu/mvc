@@ -21,7 +21,7 @@ class crud
      public function create_user($db,$email,$password,$name,$phone)
      {
       //echo $email;
-        $result = $db->query("INSERT INTO `user`(`email`, `password`, `name`, `phone`) VALUES ('$email','$password','$name','$phone')");
+        // $result = $db->query("INSERT INTO `user`(`email`, `password`, `name`, `phone`) VALUES ('$email','$password','$name','$phone')");
         echo "帳號已成功註冊";
      }
      /*-------------登入-----------------*/
@@ -145,7 +145,7 @@ class crud
 	        unlink("views/Home/images/$images");//將檔案刪除
     	}
     	$this->delect_pet($db,$pId);
-    	return "協尋資料已刪除除";
+        	return "協尋資料已刪除";
     // 	return "../Home/pdm";
      }
      public function delect_pet($db,$pId)

@@ -6,7 +6,7 @@
     
     if($uId==null){
         echo "請登入會員";
-        echo '<meta http-equiv=REFRESH CONTENT=1;url=login.php>';
+        header("Location:../Home/login");
         exit();
     }
 ?>

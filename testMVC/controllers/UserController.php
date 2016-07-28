@@ -35,13 +35,10 @@ class UserController extends Controller {
     }
     /*-----------------------------------註冊--------------------------------------*/
     function signup() {
-        $email=$_GET["email"];
-        $password=$_GET["password"];
-        $name=$_GET["name"];
-        $phone=$_GET["phone"];
-        
-        // echo "123";
-        // echo $email;
+        $email=addslashes($_GET["email"]);
+        $password=addslashes($_GET["password"]);
+        $name=addslashes($_GET["name"]);
+        $phone=addslashes($_GET["phone"]);
         
         /* 指定丟給哪個 models */
         $result = $this->model("crud");
@@ -49,15 +46,17 @@ class UserController extends Controller {
         /* 要執行哪個 function 並且給值 */
         /*---------先確認信箱是否已經註冊-------*/
         $row = $result->check_account($db,$email,$password,$name,$phone);
-        echo $row;
+        $this->view("Home/showinformation",$row);
+    
+       
     }
     /*--------------------------改會員資料--------------------------------------*/
     function updateUser() {
         $uId = $_SESSION['uId'];
-        $password=$_POST["password"];
-        $password1=$_POST["password1"];
-        $name=$_POST["name"];
-        $phone=$_POST["phone"];
+        $password=addslashes($_POST["password"]);
+        $password1=addslashes($_POST["password1"]);
+        $name=addslashes($_POST["name"]);
+        $phone=addslashes($_POST["phone"]);
         
          /* 指定丟給哪個 models */
         $result = $this->model("crud");
