@@ -16,7 +16,7 @@ class DataController extends Controller {
         }
       
         /* 指定丟給哪個 models */
-        $result = $this->model("crud");
+        $result = $this->model("gov");
         $db = $this->db();
         // /* 要執行哪個 function 並且給值 */
         $row = $result->cityChange_gov($db,$city);
@@ -35,7 +35,7 @@ class DataController extends Controller {
         }
       
         /* 指定丟給哪個 models */
-        $result = $this->model("crud");
+        $result = $this->model("pet");
         $db = $this->db();
         /* 要執行哪個 function 並且給值 */
         $row = $result->cityChange_pet($db,$city,$type);
@@ -51,7 +51,7 @@ class DataController extends Controller {
        
       
         /* 指定丟給哪個 models */
-        $result = $this->model("crud");
+        $result = $this->model("pet");
         $db = $this->db();
         // /* 要執行哪個 function 並且給值 */
         $row = $result->keyword_pet($db,$keyword,$type);
@@ -84,11 +84,11 @@ class DataController extends Controller {
             $images = "animal-paw-print (1).png";
         }
         /* 指定丟給哪個 models */
-        $result = $this->model("crud");
+        $result = $this->model("pet");
         $db = $this->db();
         /* 要執行哪個 function 並且給值 */
         $row = $result->createPet($db,$num,$sex,$variety,$weight,$age,$color,$orther,$images,$type,$city,$place,$date,$uId);
-        if($row == "上傳成功"){
+        if($row){
             header("Location:../Home");
         }
     	
@@ -98,11 +98,11 @@ class DataController extends Controller {
     function deletePet() {
         $pId = $_GET["id"];
     	/* 指定丟給哪個 models */
-        $result = $this->model("crud");
+        $result = $this->model("pet");
         $db = $this->db();
         // /* 要執行哪個 function 並且給值 */
         $row = $result->delect_pet_img($db,$pId);
-    	if($row == "協尋資料已刪除"){
+    	if($row){
             header("Location:../Home/pdm");
         }
     }
@@ -110,11 +110,12 @@ class DataController extends Controller {
     function showPet() {
         $pId = $_GET["id"];
     	/* 指定丟給哪個 models */
-        $result = $this->model("crud");
+        $city = $this->model("city");
+        $pet = $this->model("pet");
         $db = $this->db();
         // /* 要執行哪個 function 並且給值 */
-        $row2 = $result->city($db);
-        $row = $result->showPet($db,$pId);
+        $row2 = $city->select_city($db);
+        $row = $pet->showPet($db,$pId);
     	$this->view("Home/pdu",$row,$row2);
     }
     /*----------------------------------編輯協尋資料-----------------------------------------*/
@@ -135,7 +136,7 @@ class DataController extends Controller {
         $images = $_FILES["file"]["name"];
     
         /* 指定丟給哪個 models */
-        $result = $this->model("crud");
+        $result = $this->model("pet");
         $db = $this->db();
         if($images!=null){
             move_uploaded_file($_FILES["file"]["tmp_name"],"views/Home/images/".$_FILES["file"]["name"]);
@@ -143,7 +144,7 @@ class DataController extends Controller {
         }else{
             $row = $result->updatePet($db,$num,$sex,$variety,$weight,$age,$color,$orther,$type,$city,$place,$date,$pId);
         }
-        if($row == "修改成功"){
+        if($row){
             header("Location:../Home/pdm");
         }
        	

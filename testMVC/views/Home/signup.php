@@ -17,7 +17,6 @@
           }
            
       }function signup_res(data) {
-        //   alert(data);
           if(data=="此信箱已註冊過"){
                 alert(data);
           }else{

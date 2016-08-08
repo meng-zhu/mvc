@@ -14,14 +14,15 @@ class UserController extends Controller {
         $password=addslashes($_POST["password"]);
        
         /* 指定丟給哪個 models */
-        $result = $this->model("crud");
+        $result = $this->model("user");
         $db = $this->db();
         /* 要執行哪個 function 並且給值 */
         $row = $result->login($db,$email,$password);
-        if($row == "帳號或密碼輸入錯誤"){
-            header("Location:../Home/login");
+        if($row){
+             header("Location:../Home");
         }else{
-            header("Location:../Home");
+          
+             header("Location:../Home/login");
         }
        
       
@@ -41,12 +42,17 @@ class UserController extends Controller {
         $phone=addslashes($_GET["phone"]);
         
         /* 指定丟給哪個 models */
-        $result = $this->model("crud");
+        $result = $this->model("user");
         $db = $this->db();
         /* 要執行哪個 function 並且給值 */
         /*---------先確認信箱是否已經註冊-------*/
         $row = $result->check_account($db,$email,$password,$name,$phone);
-        $this->view("Home/showinformation",$row);
+        if($row){
+            $show_info = "成功註冊"; 
+        }else{
+            $show_info = "此信箱已註冊過";
+        }
+        $this->view("Home/showinformation",$show_info);
     
        
     }
@@ -59,7 +65,7 @@ class UserController extends Controller {
         $phone=addslashes($_POST["phone"]);
         
          /* 指定丟給哪個 models */
-        $result = $this->model("crud");
+        $result = $this->model("user");
         $db = $this->db();
         if($password != null){//如果有改密碼
         
@@ -70,7 +76,7 @@ class UserController extends Controller {
            $row = $result->updateUser($db,$name,$phone,$uId);
         
         }
-        if($row == "資料已修改"){
+        if($row){
             header("Location:../Home");
         }
         

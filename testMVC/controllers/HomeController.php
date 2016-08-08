@@ -11,11 +11,12 @@ class HomeController extends Controller {
     /* 跳轉首頁(走失資訊) */
     function index() {
        /* 指定丟給哪個 models */
-       $result = $this->model("crud");
-       $db = $this->db();
-       /* 要執行哪個 function 並且給值 */
-       $row = $result->city($db);
-       $this->view("Home/index",$row);
+      $result = $this->model("city");
+      $db = $this->db();
+      /* 要執行哪個 function 並且給值 */
+      $row = $result->select_city($db);
+      $this->view("Home/index",$row);
+  
        
     }
     /* 跳轉 登入 頁面 */
@@ -30,7 +31,7 @@ class HomeController extends Controller {
     function pdm() {
        $uId = $_SESSION['uId'];
        /* 指定丟給哪個 models */
-       $result = $this->model("crud");
+       $result = $this->model("pet");
        $db = $this->db();
        /* 要執行哪個 function 並且給值 */
        $row = $result->showPet_all($db,$uId);
@@ -42,7 +43,7 @@ class HomeController extends Controller {
     function mdm() {
        $uId = $_SESSION['uId'];
        /* 指定丟給哪個 models */
-       $result = $this->model("crud");
+       $result = $this->model("user");
        $db = $this->db();
        /* 要執行哪個 function 並且給值 */
        $row = $result->showUser($db,$uId);
@@ -51,21 +52,22 @@ class HomeController extends Controller {
     /* 跳轉 拾獲資訊 頁面 */
     function pickup() {
         /* 指定丟給哪個 models */
-       $result = $this->model("crud");
+       $result = $this->model("city");
        $db = $this->db();
        /* 要執行哪個 function 並且給值 */
-       $row = $result->city($db);
+       $row = $result->select_city($db);
        $this->view("Home/pickup",$row);
     }
     /* 跳轉 走失&拾獲資料登入 頁面 */
     function forms() {
         $uId = $_SESSION['uId'];
        /* 指定丟給哪個 models */
-       $result = $this->model("crud");
+       $user = $this->model("user");
+       $city = $this->model("city");
        $db = $this->db();
        /* 要執行哪個 function 並且給值 */
-       $row = $result->showUser($db,$uId);
-       $row2 = $result->city($db);
+       $row = $user->showUser($db,$uId);
+       $row2 = $city->select_city($db);
        $this->view("Home/forms",$row,$row2);
     }
     /* 跳轉 寵物走失怎麼辦？ 頁面 */
@@ -75,10 +77,10 @@ class HomeController extends Controller {
     /* 跳轉 全台寵物收容所 頁面 */
     function gov() {
         /* 指定丟給哪個 models */
-       $result = $this->model("crud");
+       $result = $this->model("city");
        $db = $this->db();
        /* 要執行哪個 function 並且給值 */
-       $row = $result->city($db);
+       $row = $result->select_city($db);
        $this->view("Home/gov",$row);
     }
   

@@ -1,29 +1,29 @@
 <?php
     header("Content-Type:text/html; charset=utf-8");
     $origin = array(
-        array(1, 1, 0, 0, 0, 0, 0, 0, 0, 0),
-        array(1, 1, 1, 1, 1, 0, 0, 0, 0, 0),
-        array(0, 0, 0, 1, 1, 1, 0, 0, 0, 0),
-        array(0, 0, 0, 0, 0, 1, 1, 1, 0, 0),
-        array(1, 1, 1, 1, 0, 0, 0, 0, 0, 0),
-        array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-        array(1, 1, 1, 0, 1, 0, 1, 1, 1, 1),
-        array(1, 0, 0, 1, 1, 0, 1, 1, 1, 1),
-        array(1, 0, 0, 1, 1, 0, 1, 1, 1, 1),
-        array(1, 1, 0, 1, 1, 0, 0, 0, 0, 1)
+        array(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+        array(1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0),
+        array(0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0),
+        array(0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0),
+        array(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0),
+        array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+        array(1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0),
+        array(1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0),
+        array(1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0),
+        array(1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0)
     );
     echo "原始資料:<br>";
-    for($i=0;$i<=9;$i++){
-        for($j=0;$j<=9;$j++){
+    for($i=0;$i<count($origin);$i++){
+        for($j=0;$j<count($origin[$i]);$j++){
             echo $origin[$i][$j]." ";
-              if($j == 9){
+              if($j == count($origin[$i])-1 ){
                 echo "<br>";
             }
         }
     }
 
-    for($i=0;$i<=9;$i++){
-        for($j=0;$j<=9;$j++){
+     for($i=0;$i<count($origin);$i++){
+        for($j=0;$j<count($origin[$i]);$j++){
             if($origin[$i][$j]==1){
                 $data_all[]=$i."".$j;
             }
@@ -146,8 +146,8 @@
             break;
         }
     }
-    for($i=0;$i<=9;$i++){
-        for($j=0;$j<=9;$j++){
+    for($i=0;$i<count($origin);$i++){
+        for($j=0;$j<count($origin[$i]);$j++){
             $origin[$i][$j]=0;
         }
     }
@@ -161,10 +161,10 @@
         
     }
    
-    for($i=0;$i<=9;$i++){
-        for($j=0;$j<=9;$j++){
+    for($i=0;$i<count($origin);$i++){
+        for($j=0;$j<count($origin[$i]);$j++){
             echo $origin[$i][$j]." ";
-              if($j == 9){
+              if($j == count($origin[$i])-1){
                 echo "<br>";
             }
         }
